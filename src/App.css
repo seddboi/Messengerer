@@ -1,0 +1,32 @@
+html {
+	text-align: center;
+}
+
+#remove-link-effect {
+	text-decoration: none;
+}
+
+#remove-link-effect:hover {
+	-webkit-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
+#remove-link-effect:visited {
+	color: white;
+}
+
+#background-image {
+	background-image: url('./assets/workplace-texting.jpg');
+	background-position: center center;
+	background-size: cover;
+}
+
+#dots-svg {
+	width: 100vw;
+}
+
+#dots-svg svg {
+	width: 100vw;
+	height: auto;
+}
