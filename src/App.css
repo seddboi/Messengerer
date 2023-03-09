@@ -30,3 +30,14 @@ html {
 	width: 100vw;
 	height: auto;
 }
+
+@media screen and (max-width: 1200px) {
+	#dots-svg {
+		height: 100vh;
+	}
+
+	#dots-svg svg {
+		height: 800px;
+		width: auto;
+	}
+}

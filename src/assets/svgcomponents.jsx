@@ -42,21 +42,29 @@ export function Dots() {
 	return (
 		<svg
 			id="visual"
-			viewBox="0 0 900 400"
+			viewBox="0 0 900 600"
 			width="900"
-			height="400"
+			height="600"
 			xmlns="http://www.w3.org/2000/svg"
 			xmlns:xlink="http://www.w3.org/1999/xlink"
 			version="1.1"
 		>
-			<rect x="0" y="0" width="900" height="400" fill="#ffffff"></rect>
+			<rect x="0" y="0" width="900" height="600" fill="#ffffff"></rect>
 			<g fill="#ECA3A3">
-				<circle r="94" cx="504" cy="208"></circle>
-				<circle r="24" cx="308" cy="104"></circle>
-				<circle r="38" cx="784" cy="269"></circle>
-				<circle r="47" cx="126" cy="283"></circle>
-				<circle r="29" cx="331" cy="305"></circle>
-				<circle r="69" cx="694" cy="103"></circle>
+				<circle id="bubble" r="72" cx="157" cy="493"></circle>
+				<circle r="27" cx="472" cy="387"></circle>
+				<circle r="54" cx="208" cy="122"></circle>
+				<circle r="29" cx="803" cy="210"></circle>
+				<circle r="60" cx="691" cy="323"></circle>
+				<circle r="45" cx="272" cy="331"></circle>
+				<circle r="62" cx="543" cy="171"></circle>
+				<circle r="30" cx="389" cy="197"></circle>
+				<circle r="43" cx="75" cy="373"></circle>
+				<circle r="36" cx="808" cy="423"></circle>
+				<circle r="33" cx="628" cy="500"></circle>
+				<circle r="52" cx="674" cy="85"></circle>
+				<circle r="36" cx="309" cy="506"></circle>
+				<circle r="61" cx="111" cy="234"></circle>
 			</g>
 		</svg>
 	);
