@@ -41,3 +41,19 @@ html {
 		width: auto;
 	}
 }
+
+/* ------------------------------------------------------------ */
+/* Signup and Login Pages */
+.left-half {
+	background-image: url(./assets/messaging.jpg);
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.right-half {
+	background-image: url(./assets/blurry-gradient-haikei.svg);
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
