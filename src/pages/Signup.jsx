@@ -4,7 +4,7 @@ import { Grid, Box, Button, Typography, TextField, InputBase, ButtonBase } from 
 
 export function Signup() {
 	return (
-		<Grid container sx={{ height: '100%' }}>
+		<Grid container sx={{ minHeight: '70vw' }}>
 			<Grid item sm={6} md={6} lg={5}>
 				<Box
 					className="left-half"
@@ -84,7 +84,14 @@ export function Signup() {
 							}}
 						/>
 						<ButtonBase
-							sx={{ color: 'white', backgroundColor: '#f1bebe', border: '1px dashed white', borderRadius: '4px', p: 1 }}
+							sx={{
+								color: 'white',
+								backgroundColor: '#f1bebe',
+								border: '1px dashed white',
+								borderRadius: '4px',
+								p: 1,
+								fontSize: '17px',
+							}}
 						>
 							Submit
 						</ButtonBase>
