@@ -57,3 +57,29 @@ html {
 	background-size: cover;
 	background-repeat: no-repeat;
 }
+
+/* ------------------------------------------------------------ */
+/* Home Page */
+.left-home {
+	height: 100vh;
+	-webkit-transition: height 0.1s;
+	-o-transition: height 0.1s;
+	transition: height 0.1s;
+}
+
+@media screen and (max-width: 900px) {
+	.left-home {
+		height: 7vh;
+		-webkit-transition: height 0.3s;
+		-o-transition: height 0.3s;
+		transition: height 0.3s;
+	}
+
+	.left-home:hover {
+		height: 15vh;
+	}
+
+	.right-home {
+		height: 93vh;
+	}
+}
