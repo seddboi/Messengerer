@@ -15,7 +15,7 @@ import {
 	IconButton,
 	InputAdornment,
 } from '@mui/material';
-import { Send, AddAPhoto, AttachFile } from '@mui/icons-material';
+import { Send, AddAPhoto, AttachFile, Settings } from '@mui/icons-material';
 
 export function Home() {
 	return (
@@ -26,13 +26,27 @@ export function Home() {
 					backgroundColor: '#E06666',
 					width: '100%',
 					maxWidth: { xs: '100%', sm: '100%', md: '300px' },
+					display: 'flex',
+					flexDirection: { xs: 'row', sm: 'row', md: 'column' },
 				}}
 			>
-				<List>{/* map out previous conversations */}</List>
+				<List sx={{ flexGrow: 1 }}>{/* map out previous conversations */}</List>
+				<IconButton
+					sx={{
+						fontSize: 'large',
+						backgroundColor: 'rgb(224, 122, 122, 0.8)',
+						color: 'white',
+						height: '50px',
+						width: '50px',
+						m: { xs: '5px', sm: '5px', md: 2 },
+					}}
+				>
+					<Settings />
+				</IconButton>
 			</Box>
 			<Box className="right-home" sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
 				<Box className="conversation-title" sx={{ display: 'flex', alignItems: 'center', p: 2, boxShadow: '0px 2px 4px #999' }}>
-					<Avatar sx={{ height: '65px', width: '65px' }}></Avatar>
+					<Avatar sx={{ height: '80px', width: '80px' }}></Avatar>
 					<Typography variant="h4" sx={{ pl: 4, color: '#E06666' }}>
 						Name
 					</Typography>
