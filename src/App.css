@@ -62,14 +62,9 @@ html {
 /* Home Page */
 .left-home {
 	height: 100vh;
-}
-
-@media screen and (min-width: 901px) {
-	.left-home {
-		-webkit-transition: height 0.1s;
-		-o-transition: height 0.1s;
-		transition: height 0.1s;
-	}
+	-webkit-transition: height 0.1s;
+	-o-transition: height 0.1s;
+	transition: height 0.1s;
 }
 
 @media screen and (max-width: 900px) {
