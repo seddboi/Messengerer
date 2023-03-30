@@ -15,7 +15,7 @@ import {
 	IconButton,
 	InputAdornment,
 } from '@mui/material';
-import { Send, AddAPhoto, AttachFile, Settings } from '@mui/icons-material';
+import { Send, AddAPhoto, AttachFile, Settings, Logout } from '@mui/icons-material';
 
 export function Home() {
 	return (
@@ -31,25 +31,40 @@ export function Home() {
 				}}
 			>
 				<List sx={{ flexGrow: 1 }}>{/* map out previous conversations */}</List>
-				<IconButton
-					sx={{
-						fontSize: 'large',
-						backgroundColor: 'rgb(224, 122, 122, 0.8)',
-						color: 'white',
-						height: '50px',
-						width: '50px',
-						m: { xs: '5px', sm: '5px', md: 2 },
-					}}
-				>
-					<Settings />
-				</IconButton>
 			</Box>
+
 			<Box className="right-home" sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
 				<Box className="conversation-title" sx={{ display: 'flex', alignItems: 'center', p: 2, boxShadow: '0px 2px 4px #999' }}>
 					<Avatar sx={{ height: '80px', width: '80px' }}></Avatar>
-					<Typography variant="h4" sx={{ pl: 4, color: '#E06666' }}>
+					<Typography variant="h4" sx={{ pl: 4, color: '#E06666', flexGrow: 1, textAlign: 'left' }}>
 						Name
 					</Typography>
+					<Box sx={{ display: 'flex', flexDirection: 'row' }}>
+						<IconButton
+							sx={{
+								fontSize: 'large',
+								backgroundColor: '#E06666',
+								color: 'white',
+								height: '40px',
+								width: '40px',
+								m: { xs: '5px', sm: '5px', md: 2 },
+							}}
+						>
+							<Logout />
+						</IconButton>
+						<IconButton
+							sx={{
+								fontSize: 'large',
+								backgroundColor: '#E06666',
+								color: 'white',
+								height: '40px',
+								width: '40px',
+								m: { xs: '5px', sm: '5px', md: 2 },
+							}}
+						>
+							<Settings />
+						</IconButton>
+					</Box>
 				</Box>
 				<Box sx={{ flexGrow: 1, height: '100%' }}>{/* message convo goes in here */}</Box>
 				<Box sx={{ boxShadow: '0 -2px 4px #999' }}>
