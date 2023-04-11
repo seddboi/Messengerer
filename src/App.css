@@ -16,28 +16,25 @@ html {
 	color: white;
 }
 
-#background-image {
-	background-image: url('./assets/workplace-texting.jpg');
-	background-position: center center;
-	background-size: cover;
+.background {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	-o-object-fit: cover;
+	object-fit: cover;
+	z-index: -1;
+	-webkit-transform: translateZ(-10px) scale(2);
+	transform: translateZ(-10px) scale(2);
 }
 
-#dots-svg {
-	width: 100vw;
-}
-
-#dots-svg svg {
+.stars svg {
 	width: 100vw;
 	height: auto;
 }
 
-@media screen and (max-width: 1200px) {
-	#dots-svg {
-		height: 100vh;
-	}
-
-	#dots-svg svg {
-		height: 800px;
+@media screen and (max-width: 900px) {
+	.stars svg {
+		height: 150vw;
 		width: auto;
 	}
 }
@@ -62,6 +59,123 @@ html {
 /* Home Page */
 .left-home {
 	height: 100vh;
+}
+
+.main-emoji {
+	-webkit-animation-name: slide-across-right;
+	animation-name: slide-across-right;
+	-webkit-animation-duration: 6s;
+	animation-duration: 6s;
+	-webkit-animation-timing-function: linear;
+	animation-timing-function: linear;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+}
+
+.main-emoji svg {
+	width: 100%;
+	height: 100%;
+}
+
+.main-emoji-positive {
+	-webkit-animation: up-down;
+	animation: up-down;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-timing-function: ease-in-out;
+	animation-timing-function: ease-in-out;
+	-webkit-animation-direction: alternate;
+	animation-direction: alternate;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+}
+
+.main-emoji-negative {
+	-webkit-animation: up-down;
+	animation: up-down;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-timing-function: ease-in-out;
+	animation-timing-function: ease-in-out;
+	-webkit-animation-direction: alternate;
+	animation-direction: alternate-reverse;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+}
+
+#first-set {
+	-webkit-animation-delay: 1s;
+	animation-delay: 1s;
+}
+
+#second-set {
+	-webkit-animation-delay: 3s;
+	animation-delay: 3s;
+}
+
+#third-set {
+	-webkit-animation-delay: 5s;
+	animation-delay: 5s;
+}
+
+@-webkit-keyframes slide-across-right {
+	0% {
+		-webkit-transform: translateX(0vw);
+		transform: translateX(0vw);
+	}
+	25% {
+		-webkit-transform: translateX(30vw);
+		transform: translateX(30vw);
+	}
+	50% {
+		-webkit-transform: translateX(60vw);
+		transform: translateX(60vw);
+	}
+	75% {
+		-webkit-transform: translateX(90vw);
+		transform: translateX(90vw);
+	}
+	100% {
+		-webkit-transform: translateX(120vw);
+		transform: translateX(120vw);
+	}
+}
+
+@keyframes slide-across-right {
+	0% {
+		-webkit-transform: translateX(0vw);
+		transform: translateX(0vw);
+	}
+	25% {
+		-webkit-transform: translateX(30vw);
+		transform: translateX(30vw);
+	}
+	50% {
+		-webkit-transform: translateX(60vw);
+		transform: translateX(60vw);
+	}
+	75% {
+		-webkit-transform: translateX(90vw);
+		transform: translateX(90vw);
+	}
+	100% {
+		-webkit-transform: translateX(120vw);
+		transform: translateX(120vw);
+	}
+}
+
+@-webkit-keyframes up-down {
+	to {
+		-webkit-transform: translateY(90vh);
+		transform: translateY(90vh);
+	}
+}
+
+@keyframes up-down {
+	to {
+		-webkit-transform: translateY(92vh);
+		transform: translateY(92vh);
+	}
 }
 
 @media screen and (max-width: 900px) {
