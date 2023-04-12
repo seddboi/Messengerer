@@ -91,7 +91,6 @@ export function Login() {
 					</ButtonBase>
 					{/* make this a conditional that checks for already used username and/or email prior to signup */}
 					<Typography sx={{ color: 'red', mt: 2, mb: 1 }}>** Error Message goes here **</Typography>
-					{/* </form> */}
 					<Link id="remove-link-effect" to="/signup">
 						Not a user?
 					</Link>
