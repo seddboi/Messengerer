@@ -1,94 +1,102 @@
 import React from 'react';
 
-import { Grid, Box, Typography, InputBase, ButtonBase } from '@mui/material';
+import { Box, Typography, InputBase, ButtonBase } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export function Login() {
 	return (
-		<Grid container sx={{ minHeight: '70vw' }}>
-			<Grid item sm={6} md={6} lg={5}>
+		<Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'column', md: 'row' }, height: '100vh', minHeight: '600px' }}>
+			<Box
+				className="left-half"
+				sx={{
+					height: { xs: '40%', sm: '40%', md: '100vh' },
+					width: { xs: '100%', sm: '100%', md: '80%' },
+					display: 'flex',
+					flexDirection: 'column',
+					justifyContent: 'center',
+					alignItems: 'center',
+				}}
+			>
+				<Typography variant="h3" sx={{ color: 'white', textShadow: '0 0 1px #888, 0 0 2px #888, 0 0 2px #888' }}>
+					Messengerer
+				</Typography>
+				<Typography variant="body1" sx={{ color: 'white', textShadow: '0 0 1px #888, 0 0 2px #888, 0 0 2px #888' }}>
+					Use it. Or don't. Thats okay too.
+				</Typography>
+			</Box>
+
+			<Box
+				className="right-half"
+				sx={{
+					height: { xs: '60%', sm: '60%', md: '100vh' },
+					width: { xs: '100%', sm: '100%', md: '120%' },
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center',
+				}}
+			>
 				<Box
-					className="left-half"
 					sx={{
-						height: '100vh',
+						backgroundColor: '#f3c7c7',
 						display: 'flex',
 						flexDirection: 'column',
 						justifyContent: 'center',
-						alignItems: 'center',
+						p: { xs: 0, sm: 0, md: 5 },
+						pr: { xs: 5, sm: 5, md: 5 },
+						pl: { xs: 5, sm: 5, md: 5 },
+						borderRadius: '4px',
+						width: { xs: '100%', sm: '100%', md: 'auto' },
+						height: { xs: '100%', sm: '100%', md: 'auto' },
 					}}
 				>
-					<Typography variant="h3" sx={{ color: 'white', textShadow: '0 0 1px #888, 0 0 2px #888, 0 0 2px #888' }}>
-						Messengerer
+					{/* <form onSubmit={() => {}}> */}
+					<Typography variant="h3" sx={{ color: 'white' }}>
+						Login
 					</Typography>
-					<Typography variant="body1" sx={{ color: 'white', textShadow: '0 0 1px #888, 0 0 2px #888, 0 0 2px #888' }}>
-						Use it. Or don't. Thats okay too.
-					</Typography>
-				</Box>
-			</Grid>
-			<Grid item sm={6} md={6} lg={7}>
-				<Box
-					className="right-half"
-					sx={{
-						height: '100vh',
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'center',
-					}}
-				>
-					<Box
+					<InputBase
+						placeholder="Username"
 						sx={{
-							backgroundColor: '#f3c7c7',
-							display: 'flex',
-							flexDirection: 'column',
-							p: 5,
+							backgroundColor: 'white',
+							color: '#eca3a3',
+							border: '1px dashed #f3c7c7',
 							borderRadius: '4px',
+							mt: 2,
+							mb: 2,
+							p: 1,
+						}}
+					/>
+					<InputBase
+						placeholder="Password"
+						sx={{
+							backgroundColor: 'white',
+							color: '#eca3a3',
+							border: '1px dashed #f3c7c7',
+							borderRadius: '4px',
+							mt: 2,
+							mb: 2,
+							p: 1,
+						}}
+					/>
+					<ButtonBase
+						sx={{
+							color: 'white',
+							backgroundColor: '#f1bebe',
+							border: '1px dashed white',
+							borderRadius: '4px',
+							p: 1,
+							fontSize: '17px',
 						}}
 					>
-						{/* <form onSubmit={() => {}}> */}
-						<Typography variant="h3" sx={{ color: 'white' }}>
-							Login
-						</Typography>
-						<InputBase
-							placeholder="Username"
-							sx={{
-								backgroundColor: 'white',
-								color: '#eca3a3',
-								border: '1px dashed #f3c7c7',
-								borderRadius: '4px',
-								mt: 2,
-								mb: 2,
-								p: 1,
-							}}
-						/>
-						<InputBase
-							placeholder="Password"
-							sx={{
-								backgroundColor: 'white',
-								color: '#eca3a3',
-								border: '1px dashed #f3c7c7',
-								borderRadius: '4px',
-								mt: 2,
-								mb: 2,
-								p: 1,
-							}}
-						/>
-						<ButtonBase
-							sx={{
-								color: 'white',
-								backgroundColor: '#f1bebe',
-								border: '1px dashed white',
-								borderRadius: '4px',
-								p: 1,
-								fontSize: '17px',
-							}}
-						>
-							Submit
-						</ButtonBase>
-						{/* make this a conditional that checks for already used username and/or email prior to signup */}
-						<Typography sx={{ color: 'red', mt: 2, mb: 1 }}>** Error Message goes here **</Typography>
-						{/* </form> */}
-					</Box>
+						Submit
+					</ButtonBase>
+					{/* make this a conditional that checks for already used username and/or email prior to signup */}
+					<Typography sx={{ color: 'red', mt: 2, mb: 1 }}>** Error Message goes here **</Typography>
+					{/* </form> */}
+					<Link id="remove-link-effect" to="/signup">
+						Not a user?
+					</Link>
 				</Box>
-			</Grid>
-		</Grid>
+			</Box>
+		</Box>
 	);
 }

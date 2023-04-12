@@ -4,12 +4,11 @@ html {
 
 #remove-link-effect {
 	text-decoration: none;
+	font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
 }
 
 #remove-link-effect:hover {
-	-webkit-transform: scale(1.1);
-	-ms-transform: scale(1.1);
-	transform: scale(1.1);
+	text-decoration: underline;
 }
 
 #remove-link-effect:visited {
@@ -48,11 +47,10 @@ html {
 	background-repeat: no-repeat;
 }
 
-.right-half {
-	background-image: url(./assets/blurry-gradient-haikei.svg);
-	background-position: center center;
-	background-size: cover;
-	background-repeat: no-repeat;
+@media screen and (max-width: 900px) {
+	.left-half {
+		background-position: bottom center;
+	}
 }
 
 /* ------------------------------------------------------------ */

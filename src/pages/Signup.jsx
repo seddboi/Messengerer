@@ -98,6 +98,17 @@ export function Signup() {
 						{/* make this a conditional that checks for already used username and/or email prior to signup */}
 						<Typography sx={{ color: 'red', mt: 2, mb: 1 }}>** Error Message goes here **</Typography>
 						{/* </form> */}
+						<ButtonBase
+							disableRipple
+							sx={{
+								color: 'white',
+								fontSize: '17px',
+								pt: 2,
+								'&:hover': { backgroundColor: 'none', textDecoration: 'underline' },
+							}}
+						>
+							Already a user?
+						</ButtonBase>
 					</Box>
 				</Box>
 			</Grid>
