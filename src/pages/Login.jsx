@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Box, Typography, InputBase, ButtonBase } from '@mui/material';
+import { Box, Typography, InputBase, ButtonBase, InputAdornment, IconButton } from '@mui/material';
 import { Link } from 'react-router-dom';
 
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { updateUsername, updatePassword } from '../redux/formState';
+
 export function Login() {
+	// const dispatch = useDispatch();
+	// const username = useSelector((state) => state.formInfoState.username);
+	// const password = useSelector((state) => state.formInfoState.password);
+
+	const [username, setUsername] = useState('');
+	const [password, setPassword] = useState('');
+	const [showPassword, setShowPassword] = useState(false);
+
+	const handleShowPassword = () => {
+		setShowPassword(!showPassword);
+	};
+
 	return (
 		<Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'column', md: 'row' }, height: '100vh', minHeight: '600px' }}>
 			<Box
@@ -55,6 +72,7 @@ export function Login() {
 					</Typography>
 					<InputBase
 						placeholder="Username"
+						onChange={(e) => setUsername(e.target.value)}
 						sx={{
 							backgroundColor: 'white',
 							color: '#eca3a3',
@@ -67,6 +85,20 @@ export function Login() {
 					/>
 					<InputBase
 						placeholder="Password"
+						type={showPassword ? 'text' : 'password'}
+						onChange={(e) => setPassword(e.target.value)}
+						endAdornment={
+							<InputAdornment>
+								<IconButton
+									aria-label="toggle password visibility"
+									onClick={() => {
+										handleShowPassword();
+									}}
+								>
+									{showPassword ? <Visibility /> : <VisibilityOff />}
+								</IconButton>
+							</InputAdornment>
+						}
 						sx={{
 							backgroundColor: 'white',
 							color: '#eca3a3',
@@ -78,6 +110,10 @@ export function Login() {
 						}}
 					/>
 					<ButtonBase
+						// onClick={() => {
+						// 	dispatch(updateUsername(loginUsername));
+						// 	dispatch(updatePassword(loginPassword));
+						// }}
 						sx={{
 							color: 'white',
 							backgroundColor: '#f1bebe',
@@ -90,7 +126,7 @@ export function Login() {
 						Submit
 					</ButtonBase>
 					{/* make this a conditional that checks for already used username and/or email prior to signup */}
-					<Typography sx={{ color: 'red', mt: 2, mb: 1 }}>** Error Message goes here **</Typography>
+					<Typography sx={{ color: 'red', mt: 2, mb: 1 }}>{username}</Typography>
 					<Link id="remove-link-effect" to="/signup">
 						Not a user?
 					</Link>
