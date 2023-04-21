@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Box, Typography, InputBase, ButtonBase } from '@mui/material';
+import { Box, Typography, InputBase, ButtonBase, InputAdornment, IconButton } from '@mui/material';
 import { Link } from 'react-router-dom';
 
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+
 export function Signup() {
+	const [username, setUsername] = useState('');
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const [showPassword, setShowPassword] = useState(false);
+
+	const handleShowPassword = () => {
+		setShowPassword(!showPassword);
+	};
+
 	return (
 		<Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'column', md: 'row' }, height: '100vh', minHeight: '700px' }}>
 			<Box
@@ -56,6 +67,10 @@ export function Signup() {
 					</Typography>
 					<InputBase
 						placeholder="Username"
+						autoComplete="username"
+						onChange={(e) => {
+							setUsername(e.target.value);
+						}}
 						sx={{
 							backgroundColor: 'white',
 							color: '#eca3a3',
@@ -68,6 +83,10 @@ export function Signup() {
 					/>
 					<InputBase
 						placeholder="Email"
+						autoComplete="email"
+						onChange={(e) => {
+							setEmail(e.target.value);
+						}}
 						sx={{
 							backgroundColor: 'white',
 							color: '#eca3a3',
@@ -80,6 +99,23 @@ export function Signup() {
 					/>
 					<InputBase
 						placeholder="Password"
+						type={showPassword ? 'text' : 'password'}
+						autoComplete="new-password"
+						onChange={(e) => {
+							setPassword(e.target.value);
+						}}
+						endAdornment={
+							<InputAdornment>
+								<IconButton
+									aria-label="toggle password visibility"
+									onClick={() => {
+										handleShowPassword();
+									}}
+								>
+									{showPassword ? <Visibility /> : <VisibilityOff />}
+								</IconButton>
+							</InputAdornment>
+						}
 						sx={{
 							backgroundColor: 'white',
 							color: '#eca3a3',

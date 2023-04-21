@@ -72,6 +72,7 @@ export function Login() {
 					</Typography>
 					<InputBase
 						placeholder="Username"
+						autoComplete="username"
 						onChange={(e) => setUsername(e.target.value)}
 						sx={{
 							backgroundColor: 'white',
@@ -86,6 +87,7 @@ export function Login() {
 					<InputBase
 						placeholder="Password"
 						type={showPassword ? 'text' : 'password'}
+						autoComplete="new-password"
 						onChange={(e) => setPassword(e.target.value)}
 						endAdornment={
 							<InputAdornment>
