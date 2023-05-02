@@ -1,18 +1,50 @@
 import React, { useState } from 'react';
+import Axios from 'axios';
 
 import { Box, Typography, InputBase, ButtonBase, InputAdornment, IconButton } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
 
+import { APP_URL } from '../App';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+
+import { useDispatch } from 'react-redux';
+import { updateUserInfo } from '../redux/formState';
 
 export function Signup() {
 	const [username, setUsername] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [showPassword, setShowPassword] = useState(false);
+	const [signupError, setSignupError] = useState(false);
+	const [signupErrorMessage, setSignupErrorMessage] = useState('');
+
+	const dispatch = useDispatch();
 
 	const handleShowPassword = () => {
 		setShowPassword(!showPassword);
+	};
+
+	const handleSignup = async () => {
+		if (username.length <= 0 || email.length <= 0 || password.length <= 0) {
+			setSignupErrorMessage('Please fill out all fields.');
+		} else {
+			await Axios.post(APP_URL + '/signup', {
+				username: username,
+				password: password,
+				email: email,
+			}).then((res) => {
+				console.log(res.data);
+				if (res.data.auth) {
+					localStorage.setItem('aT', res.data.token);
+					dispatch(updateUserInfo(res.data));
+					// broken redirect to homepage
+					return redirect('/home');
+				} else {
+					setSignupErrorMessage(res.data.message);
+					setSignupError(true);
+				}
+			});
+		}
 	};
 
 	return (
@@ -87,6 +119,7 @@ export function Signup() {
 						onChange={(e) => {
 							setEmail(e.target.value);
 						}}
+						error={signupError}
 						sx={{
 							backgroundColor: 'white',
 							color: '#eca3a3',
@@ -127,6 +160,13 @@ export function Signup() {
 						}}
 					/>
 					<ButtonBase
+						onClick={() => {
+							handleSignup();
+
+							// setUsername('');
+							// setPassword('');
+							// setEmail('');
+						}}
 						sx={{
 							color: 'white',
 							backgroundColor: '#f1bebe',
@@ -139,10 +179,12 @@ export function Signup() {
 						Submit
 					</ButtonBase>
 					{/* make this a conditional that checks for already used username and/or email prior to signup */}
-					<Typography sx={{ color: 'red', mt: 2, mb: 1 }}>** Error Message goes here **</Typography>
-					<Link id="remove-link-effect" to="/login">
-						Already a user?
-					</Link>
+					<Typography sx={{ color: 'red', mt: 2, mb: 1 }}>{signupErrorMessage}</Typography>
+					<Box sx={{ display: 'flex', justifyContent: 'center' }}>
+						<Link id="remove-link-effect" to="/login">
+							Already a user?
+						</Link>
+					</Box>
 				</Box>
 			</Box>
 		</Box>

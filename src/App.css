@@ -5,6 +5,7 @@ html {
 #remove-link-effect {
 	text-decoration: none;
 	font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+	width: 120px;
 }
 
 #remove-link-effect:hover {
