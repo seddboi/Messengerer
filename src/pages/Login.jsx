@@ -1,25 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
 
 import { Box, Typography, InputBase, ButtonBase, InputAdornment, IconButton } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
+import { APP_URL } from '../App';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-// import { useSelector, useDispatch } from 'react-redux';
-// import { updateUsername, updatePassword } from '../redux/formState';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUserInfo } from '../redux/formState';
 
 export function Login() {
-	// const dispatch = useDispatch();
-	// const username = useSelector((state) => state.formInfoState.username);
-	// const password = useSelector((state) => state.formInfoState.password);
-
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [showPassword, setShowPassword] = useState(false);
+	const [loginErrorMessage, setLoginErrorMessage] = useState('');
+	// const [loginError, setLoginError] = useState(false);
+
+	const dispatch = useDispatch();
+	const loginStatus = useSelector((state) => state.formInfoState.userInfo.auth);
+
+	const navigate = useNavigate();
 
 	const handleShowPassword = () => {
 		setShowPassword(!showPassword);
 	};
+
+	const handleLogin = async () => {
+		if (username.length <= 0 || password.length <= 0) {
+			setLoginErrorMessage('Please fill out all fields.');
+		} else {
+			await Axios.post(APP_URL + '/login', {
+				username: username,
+				password: password,
+			}).then((res) => {
+				console.log(res.data);
+				if (res.data.auth) {
+					sessionStorage.setItem('aT', res.data.token);
+					sessionStorage.setItem('loginStatus', res.data.auth);
+					sessionStorage.setItem('userInfo', JSON.stringify(res.data.result));
+					dispatch(updateUserInfo(res.data));
+				} else {
+					setLoginErrorMessage(res.data.message);
+					setLoginError(true);
+				}
+			});
+		}
+	};
+
+	useEffect(() => {
+		console.log(loginStatus);
+		if (loginStatus) {
+			navigate('/home');
+		}
+	}, [loginStatus]);
 
 	return (
 		<Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'column', md: 'row' }, height: '100vh', minHeight: '600px' }}>
@@ -112,10 +146,9 @@ export function Login() {
 						}}
 					/>
 					<ButtonBase
-						// onClick={() => {
-						// 	dispatch(updateUsername(loginUsername));
-						// 	dispatch(updatePassword(loginPassword));
-						// }}
+						onClick={() => {
+							handleLogin();
+						}}
 						sx={{
 							color: 'white',
 							backgroundColor: '#f1bebe',
@@ -128,10 +161,12 @@ export function Login() {
 						Submit
 					</ButtonBase>
 					{/* make this a conditional that checks for already used username and/or email prior to signup */}
-					<Typography sx={{ color: 'red', mt: 2, mb: 1 }}>{username}</Typography>
-					<Link id="remove-link-effect" to="/signup">
-						Not a user?
-					</Link>
+					<Typography sx={{ color: 'red', mt: 2, mb: 1 }}>{loginErrorMessage}</Typography>
+					<Box sx={{ display: 'flex', justifyContent: 'center' }}>
+						<Link id="remove-link-effect" to="/signup">
+							Not a user?
+						</Link>
+					</Box>
 				</Box>
 			</Box>
 		</Box>

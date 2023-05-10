@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 
 import { Box, Typography, InputBase, ButtonBase, InputAdornment, IconButton } from '@mui/material';
-import { Link, redirect } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { APP_URL } from '../App';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateUserInfo } from '../redux/formState';
 
 export function Signup() {
@@ -15,10 +15,13 @@ export function Signup() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [showPassword, setShowPassword] = useState(false);
-	const [signupError, setSignupError] = useState(false);
+	// const [signupError, setSignupError] = useState(false);
 	const [signupErrorMessage, setSignupErrorMessage] = useState('');
 
 	const dispatch = useDispatch();
+	const loginStatus = useSelector((state) => state.formInfoState.userInfo.auth);
+
+	const navigate = useNavigate();
 
 	const handleShowPassword = () => {
 		setShowPassword(!showPassword);
@@ -35,10 +38,10 @@ export function Signup() {
 			}).then((res) => {
 				console.log(res.data);
 				if (res.data.auth) {
-					localStorage.setItem('aT', res.data.token);
+					sessionStorage.setItem('aT', res.data.token);
+					sessionStorage.setItem('loginStatus', res.data.auth);
+					sessionStorage.setItem('userInfo', JSON.stringify(res.data.result));
 					dispatch(updateUserInfo(res.data));
-					// broken redirect to homepage
-					return redirect('/home');
 				} else {
 					setSignupErrorMessage(res.data.message);
 					setSignupError(true);
@@ -46,6 +49,13 @@ export function Signup() {
 			});
 		}
 	};
+
+	useEffect(() => {
+		console.log(loginStatus);
+		if (loginStatus) {
+			navigate('/home');
+		}
+	}, [loginStatus]);
 
 	return (
 		<Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'column', md: 'row' }, height: '100vh', minHeight: '700px' }}>
@@ -100,6 +110,7 @@ export function Signup() {
 					<InputBase
 						placeholder="Username"
 						autoComplete="username"
+						value={username}
 						onChange={(e) => {
 							setUsername(e.target.value);
 						}}
@@ -116,6 +127,7 @@ export function Signup() {
 					<InputBase
 						placeholder="Email"
 						autoComplete="email"
+						value={email}
 						onChange={(e) => {
 							setEmail(e.target.value);
 						}}
@@ -134,6 +146,7 @@ export function Signup() {
 						placeholder="Password"
 						type={showPassword ? 'text' : 'password'}
 						autoComplete="new-password"
+						value={password}
 						onChange={(e) => {
 							setPassword(e.target.value);
 						}}
@@ -163,9 +176,9 @@ export function Signup() {
 						onClick={() => {
 							handleSignup();
 
-							// setUsername('');
-							// setPassword('');
-							// setEmail('');
+							setUsername('');
+							setEmail('');
+							setPassword('');
 						}}
 						sx={{
 							color: 'white',
