@@ -7,18 +7,18 @@ import { Link, useNavigate } from 'react-router-dom';
 import { APP_URL } from '../App';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { updateUserInfo } from '../redux/formState';
+import { useSelector } from 'react-redux';
+// import { updateUserInfo } from '../redux/formState';
 
 export function Signup() {
 	const [username, setUsername] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [showPassword, setShowPassword] = useState(false);
-	// const [signupError, setSignupError] = useState(false);
+	const [signupError, setSignupError] = useState(false);
 	const [signupErrorMessage, setSignupErrorMessage] = useState('');
 
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 	const loginStatus = useSelector((state) => state.formInfoState.userInfo.auth);
 
 	const navigate = useNavigate();
@@ -41,7 +41,7 @@ export function Signup() {
 					sessionStorage.setItem('aT', res.data.token);
 					sessionStorage.setItem('loginStatus', res.data.auth);
 					sessionStorage.setItem('userInfo', JSON.stringify(res.data.result));
-					dispatch(updateUserInfo(res.data));
+					// dispatch(updateUserInfo(res.data));
 				} else {
 					setSignupErrorMessage(res.data.message);
 					setSignupError(true);

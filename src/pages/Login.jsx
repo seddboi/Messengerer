@@ -7,8 +7,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { APP_URL } from '../App';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { updateUserInfo } from '../redux/formState';
+import { useSelector } from 'react-redux';
+// import { updateUserInfo } from '../redux/formState';
 
 export function Login() {
 	const [username, setUsername] = useState('');
@@ -17,7 +17,7 @@ export function Login() {
 	const [loginErrorMessage, setLoginErrorMessage] = useState('');
 	// const [loginError, setLoginError] = useState(false);
 
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 	const loginStatus = useSelector((state) => state.formInfoState.userInfo.auth);
 
 	const navigate = useNavigate();
@@ -39,7 +39,7 @@ export function Login() {
 					sessionStorage.setItem('aT', res.data.token);
 					sessionStorage.setItem('loginStatus', res.data.auth);
 					sessionStorage.setItem('userInfo', JSON.stringify(res.data.result));
-					dispatch(updateUserInfo(res.data));
+					// dispatch(updateUserInfo(res.data));
 				} else {
 					setLoginErrorMessage(res.data.message);
 					setLoginError(true);
