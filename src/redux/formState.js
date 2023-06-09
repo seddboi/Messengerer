@@ -12,6 +12,6 @@ export const formInfoSlice = createSlice({
 	},
 });
 
-export const { updateUsername, updatePassword, updateEmail, updateUserInfo } = formInfoSlice.actions;
+export const { updateUserInfo } = formInfoSlice.actions;
 
 export default formInfoSlice.reducer;

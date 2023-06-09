@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import {
 	Box,
@@ -17,7 +17,17 @@ import {
 } from '@mui/material';
 import { Send, AddAPhoto, AttachFile, Settings, Logout } from '@mui/icons-material';
 
+import { Link, useNavigate } from 'react-router-dom';
+
 export function Home() {
+	const navigate = useNavigate();
+
+	const handleLogout = () => {
+		sessionStorage.clear();
+		sessionStorage.setItem('loginStatus', 'false');
+		navigate('/login');
+	};
+
 	return (
 		<Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'column', md: 'row' }, transition: 'none' }}>
 			<Box
@@ -41,6 +51,7 @@ export function Home() {
 					</Typography>
 					<Box sx={{ display: 'flex', flexDirection: 'row' }}>
 						<IconButton
+							onClick={handleLogout}
 							sx={{
 								fontSize: 'large',
 								backgroundColor: '#E06666',

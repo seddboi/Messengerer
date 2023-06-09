@@ -7,18 +7,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { APP_URL } from '../App';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-import { useSelector } from 'react-redux';
-// import { updateUserInfo } from '../redux/formState';
-
 export function Login() {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [showPassword, setShowPassword] = useState(false);
 	const [loginErrorMessage, setLoginErrorMessage] = useState('');
 	// const [loginError, setLoginError] = useState(false);
-
-	// const dispatch = useDispatch();
-	const loginStatus = useSelector((state) => state.formInfoState.userInfo.auth);
 
 	const navigate = useNavigate();
 
@@ -39,7 +33,7 @@ export function Login() {
 					sessionStorage.setItem('aT', res.data.token);
 					sessionStorage.setItem('loginStatus', res.data.auth);
 					sessionStorage.setItem('userInfo', JSON.stringify(res.data.result));
-					// dispatch(updateUserInfo(res.data));
+					navigate('/home');
 				} else {
 					setLoginErrorMessage(res.data.message);
 					setLoginError(true);
@@ -47,13 +41,6 @@ export function Login() {
 			});
 		}
 	};
-
-	useEffect(() => {
-		console.log(loginStatus);
-		if (loginStatus) {
-			navigate('/home');
-		}
-	}, [loginStatus]);
 
 	return (
 		<Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'column', md: 'row' }, height: '100vh', minHeight: '600px' }}>
