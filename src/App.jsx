@@ -5,6 +5,7 @@ import { Landing } from './pages/Landing';
 import { Login } from './pages/Login';
 import { Signup } from './pages/Signup';
 import { Home } from './pages/Home';
+import { UserSettings } from './pages/Settings';
 
 import { PrivateRoutes } from './utils/privateroutes';
 // import { UserSettings } from './pages/Settings';
@@ -19,6 +20,7 @@ function App() {
 				<Routes>
 					<Route element={<PrivateRoutes />}>
 						<Route exact path="/home" element={<Home />} />
+						<Route exact path="/settings" element={<UserSettings />} />
 					</Route>
 					<Route exact path="/login" element={<Login />} />
 					<Route exact path="/signup" element={<Signup />} />

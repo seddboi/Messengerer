@@ -64,6 +64,9 @@ export function Home() {
 							<Logout />
 						</IconButton>
 						<IconButton
+							onClick={() => {
+								navigate('/settings');
+							}}
 							sx={{
 								fontSize: 'large',
 								backgroundColor: '#E06666',

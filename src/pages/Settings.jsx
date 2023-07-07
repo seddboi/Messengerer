@@ -24,9 +24,19 @@ import { AccountBox, DisplaySettings, Logout } from '@mui/icons-material';
 
 export function UserSettings() {
 	return (
-		<Box sx={{ width: '100vw', height: '100vh', backgroundColor: '#E06666' }}>
-			<Box className="centered-div" sx={{ display: 'flex', justifyContent: 'center' }}>
-				<Box sx={{}}>
+		<Box
+			sx={{
+				width: '100vw',
+				height: '100vh',
+				backgroundColor: '#E06666',
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: 'center',
+			}}
+		>
+			<Box className="centered-div" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+				<Typography color={'white'}>Coming Soon!</Typography>
+				{/* <Box sx={{}}>
 					<List>
 						<ListItemButton sx={{ color: 'white' }}>
 							<ListItemIcon sx={{ color: 'white' }}>
@@ -48,10 +58,9 @@ export function UserSettings() {
 						</ListItemButton>
 					</List>
 				</Box>
-				<Divider orientation="vertical" />
-				<Box>
+				<Divider orientation="vertical" color="white" flexItem sx={{ borderRightWidth: '3px' }} />
+				<Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
 					<FormGroup>
-						<InputBase></InputBase>
 						<FormControlLabel
 							control={
 								<Checkbox
@@ -67,7 +76,7 @@ export function UserSettings() {
 							sx={{ color: 'white' }}
 						></FormControlLabel>
 					</FormGroup>
-				</Box>
+				</Box>*/}
 			</Box>
 		</Box>
 	);
